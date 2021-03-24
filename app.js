@@ -68,9 +68,27 @@ Add a New Project
 };
 
 promptUser()
-  .then(answers => console.log(answers))
   .then(promptProject)
-  .then(projectAnswers => console.log(projectAnswers));
+  .then(portfolioData => {
+    console.log(portfolioData);
+  });
+
+/*
+promptUser()
+  .then(promptProject)
+  .then(projectAnswers => console.log(projectAnswers))
+  // use the array method push() to place projectData from inquirer into new projects arr
+  .then(projectData => {
+    portfolioData.projects.push(projectData);
+    //evaluate whether user wants to add another project
+    if (projectData.confirmAddProject) {
+      //include portfolioData as argument so a new projects array won't be initialized and data lost
+      return promptProject(portfolioData);
+    } else {
+      return portfolioData;
+    }
+  });
+*/
 
 //const fs = require('fs');
 //const generatePage = require('./src/page-template');
