@@ -27,13 +27,26 @@ return inquirer.prompt([
         console.log('Please enter your GitHub Username!');
         return false;
       }
-    }
     },
-    {
-      type: 'input',
-      name: 'about',
-      message: 'Provide some information about yourself:'
+  },
+  {
+    type: 'confirm',
+    name: 'confirmAbout',
+    message: 'Would you like to enter some information about yourself for an "About" section?',
+    default: true
+  },
+  {
+    type: 'input',
+    name: 'about',
+    message: 'Provide some information about yourself:',
+    when: ({ confirmAbout }) => {
+      if (confirmAbout) {
+        return true;
+      } else {
+        return false;
+      }
     }
+  }
   ]);
 };
   
@@ -82,7 +95,7 @@ Add a New Project
     {
       type: 'input',
       name: 'link',
-      message: 'Enter the GitHub link to your project. (Required)'
+      message: 'Enter the GitHub link to your project. (Required)',
       validate: linkInput => {
         if (linkInput)  {
         return true;
