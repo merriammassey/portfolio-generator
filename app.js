@@ -1,3 +1,6 @@
+// assign HTML template function to generatePage
+const fs = require('fs');
+const generatePage = require('./src/page-template');
 const inquirer = require('inquirer');
 
 const promptUser = () => {
@@ -123,7 +126,12 @@ Add a New Project
 promptUser()
   .then(promptProject)
   .then(portfolioData => {
-    console.log(portfolioData);
+    const pageHTML = generatePage();
+
+    fs.writeFile('./index.html', pageHTML, err => {
+      if (err) throw new Error(err);
+
+    });
   });
 
 /*
@@ -143,8 +151,7 @@ promptUser()
   });
 */
 
-//const fs = require('fs');
-//const generatePage = require('./src/page-template');
+
 
 //const pageHTML = generatePage(name, github);
 
